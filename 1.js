@@ -1,5 +1,4 @@
 function solve(array) {
-
     let string = array.shift();
 
     for (let line of array) {
@@ -12,14 +11,12 @@ function solve(array) {
 
         if (action === 'Change') {
             let [, char, replacement] = tokens;
-
-            while (string.indexOf(char) >= 1) {
+            while (string.indexOf(char) >= 0) {
                 string = string.replace(char, replacement);
             }
-            console.log(string)
+            console.log(string);
         } else if (action === 'Includes') {
             let [, subs] = tokens;
-
             if (string.includes(subs)) {
                 console.log('True');
             } else {
@@ -27,7 +24,6 @@ function solve(array) {
             }
         } else if (action === 'End') {
             let [, subs] = tokens;
-            
             if (string.endsWith(subs)) {
                 console.log('True');
             } else {
@@ -36,23 +32,16 @@ function solve(array) {
         } else if (action === 'Uppercase') {
             string = string.toUpperCase();
             console.log(string);
-        } else if (command === 'FindIndex') {
+        } else if (action === 'FindIndex') {
             let [, char] = tokens;
             let index = string.indexOf(char);
             console.log(index);
         } else if (action === 'Cut') {
             let [, index, count] = tokens;
+            index = Number(index);
+            count = Number(count);
             string = string.substring(index, index + count);
             console.log(string);
         }
-
     }
 }
-solve(["//Th1s 1s my str1ng!//",
-"Change 1 i",
-"Includes string",
-"End my",
-"Uppercase",
-"FindIndex I",
-"Cut 5 5",
-"Done"])
